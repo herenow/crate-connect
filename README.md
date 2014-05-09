@@ -72,7 +72,7 @@ db.execute('SELECT * FROM tweets LIMIT ?', [1], function(err, res) {})
 **db.blob().put(table, hash, buffer, callback)**
 * All arguments are mandatory
 ```javascript
-db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', buffer, function(err) {
+db.blob().put('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', buffer, function(err) {
     if(err) {
         //err.statusCode
     }
@@ -82,7 +82,7 @@ db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', buffer, function(e
 **db.blob().get(table, hash, callback)**
 * All arguments are mandatory
 ```javascript
-db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err, buffer) {
+db.blob().get('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err, buffer) {
     if(err) {
         //err.statusCode
     }
@@ -92,7 +92,7 @@ db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err, buff
 **db.blob().check(table, hash, callback)**
 * All arguments are mandatory
 ```javascript
-db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err) {
+db.blob().check('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err) {
     if(err) {
         //err.statusCode
     }
