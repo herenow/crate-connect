@@ -1,7 +1,7 @@
 {
   "name": "crate-connect",
   "description": "A simple node.js driver to connect to a Crate.io Data Storage.",
-  "version": "0.1.4",
+  "version": "0.1.41",
   "author": "Me :)",
   "repository": {
     "type": "git",
