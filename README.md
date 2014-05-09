@@ -1,5 +1,6 @@
 crate-connect
 =======
+[![Build Status](https://travis-ci.org/herenow/crate-connect.svg?branch=master)](https://travis-ci.org/herenow/crate-connect)
 
 A simple node.js driver to connect to a Crate.io Data Storage, this was originally part of the [CrateJS](https://github.com/herenow/cratejs) driver, now [CrateJS](https://github.com/herenow/cratejs) is an extension of crate-connect.
 
