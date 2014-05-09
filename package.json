@@ -1,0 +1,29 @@
+{
+  "name": "crate-connect",
+  "description": "A simple node.js driver to connect to a Crate.io Data Storage.",
+  "version": "0.1.3",
+  "author": "Me :)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/herenow/crate-connect.git"
+  },
+  "bugs": {
+    "url": "https://github.com/herenow/crate-connect/issues"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.6"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "1.18.x"
+  },
+   "keywords": [
+    "crate-connect",
+    "crate.io",
+    "crate",
+    "crate driver"
+  ]
+}
