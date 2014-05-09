@@ -24,9 +24,9 @@ describe('Cratejs', function() {
 
 	describe('Now try to query the dabtase', function(){
 		it('Should return an rows from the query', function(done) {
-			query[0].execute([100], function(res) {
-				if(res.error) {
-					return done(res.error);
+			query[0].execute([100], function(err, res) {
+				if(err) {
+					return done(err);
 				}
 				else if(res.rowcount < 1) {
 					return done('no rows returned');
@@ -35,9 +35,9 @@ describe('Cratejs', function() {
 			});
 		});
         it('Should return an rows from the query (direct execution)', function(done) {
-            db.execute('SELECT * FROM sys.cluster LIMIT ?', [100], function(res) {
-                if(res.error) {
-                    return done(res.error);
+            db.execute('SELECT * FROM sys.cluster LIMIT ?', [100], function(err, res) {
+                if(err) {
+                    return done(err);
                 }
                 else if(res.rowcount < 1) {
                     return done('no rows returned');
