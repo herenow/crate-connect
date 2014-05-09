@@ -41,7 +41,14 @@ Query.send = function Send(query, statements, callback) {
 			});
 
 			res.on('end', function() {
-				callback(JSON.parse(buf));
+                var result = JSON.parse(buf);
+
+                if(result.error) {
+                    callback(result.error, null);
+                }
+                else {
+                    callback(null, result);
+                }
 			});
 		});
 	}
