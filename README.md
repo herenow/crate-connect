@@ -55,23 +55,21 @@ function onResponse(err, res) {
 }
 ```
 
+
 Methods
 ----------
 
-#db.Query(string)
+**db.Query(string)**
 * This constructs a query and returns an .execute() method.
 
-#db.Query(string).execute([statements], callback)
-* This executes a previously constructed query.
-
-#db.execute(query, statements, callback)
+**db.execute(query, statements, callback)**
 * This executes a query directly
 * Statements is an optional parameter, you can replace it with the callback
 ```javascript
 db.execute('SELECT * FROM tweets LIMIT ?', [1], function(err, res) {})
 ```
 
-#db.blob().put(table, hash, buffer, callback)
+**db.blob().put(table, hash, buffer, callback)**
 * All arguments are mandatory
 ```javascript
 db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', buffer, function(err) {
@@ -81,7 +79,7 @@ db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', buffer, function(e
 })
 ```
 
-#db.blob().get(table, hash, callback)
+**db.blob().get(table, hash, callback)**
 * All arguments are mandatory
 ```javascript
 db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err, buffer) {
@@ -91,7 +89,7 @@ db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err, buff
 })
 ```
 
-#db.blob().check(table, hash, callback)
+**db.blob().check(table, hash, callback)**
 * All arguments are mandatory
 ```javascript
 db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err) {
@@ -100,6 +98,7 @@ db.execute('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err) {
     }
 })
 ```
+
 
 TODO
 ---------
