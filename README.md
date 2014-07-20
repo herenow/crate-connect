@@ -60,11 +60,11 @@ function onResponse(err, res) {
 Methods
 ----------
 
-##db.Query(string)
+###db.Query(string)
 * This constructs a query and returns an .execute() method.
 
 
-##db.execute(query, statements, callback)
+###db.execute(query, statements, callback)
 * This executes a query directly
 * Statements is an optional parameter, you can replace it with the callback
 ```javascript
@@ -72,24 +72,24 @@ db.execute('SELECT * FROM tweets LIMIT ?', [1], function(err, res) {})
 ```
 
 
-##db.blob()
+###db.blob()
 * Methods related to managing blob's
 * Note that this does not construct the sha1 hash from the buffer, you need to do it yourself.
 * Note that if the sha1 hash is not correct, the blob wont be inserted. **The sha1 hash must be calculated from the blob to be inserted.**
 
-###blob().put(table, sha1Hash, buffer, callback)
+####blob().put(table, sha1Hash, buffer, callback)
 ```javascript
 var buffer = new Buffer('sample')
 var hash = crypto.createHash('sha1').update(buffer).digest('hex')
 
-###blob().put('imagesTable', hash, buffer, function(err) {
+####blob().put('imagesTable', hash, buffer, function(err) {
     if(err) {
         //err.statusCode
     }
 })
 ```
 
-###blob().get(table, sha1Hash, callback)
+####blob().get(table, sha1Hash, callback)
 ```javascript
 db.blob().get('imagesTable', '8151325dcdbae9e0ff95f9f9658432dbedfdb209', function(err, buffer) {
     if(err) {
@@ -98,7 +98,7 @@ db.blob().get('imagesTable', '8151325dcdbae9e0ff95f9f9658432dbedfdb209', functio
 })
 ```
 
-###blob().check(table, sha1Hash, callback)
+####blob().check(table, sha1Hash, callback)
 ```javascript
 db.blob().check('imagesTable', '8151325dcdbae9e0ff95f9f9658432dbedfdb209', function(err) {
     if(err) {
@@ -107,7 +107,7 @@ db.blob().check('imagesTable', '8151325dcdbae9e0ff95f9f9658432dbedfdb209', funct
 })
 ```
 
-###blob().delete(table, sha1Hash, callback)
+####blob().delete(table, sha1Hash, callback)
 ```javascript
 db.blob().check('imagesTable', '8151325dcdbae9e0ff95f9f9658432dbedfdb209', function(err) {
     if(err) {
