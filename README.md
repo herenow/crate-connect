@@ -60,40 +60,56 @@ function onResponse(err, res) {
 Methods
 ----------
 
-**db.Query(string)**
+##db.Query(string)
 * This constructs a query and returns an .execute() method.
 
-**db.execute(query, statements, callback)**
+
+##db.execute(query, statements, callback)
 * This executes a query directly
 * Statements is an optional parameter, you can replace it with the callback
 ```javascript
 db.execute('SELECT * FROM tweets LIMIT ?', [1], function(err, res) {})
 ```
 
-**db.blob().put(table, hash, buffer, callback)**
-* All arguments are mandatory
+
+##db.blob()
+* Methods related to managing blob's
+* Note that this does not construct the sha1 hash from the buffer, you need to do it yourself.
+* Note that if the sha1 hash is not correct, the blob wont be inserted. **The sha1 hash must be calculated from the blob to be inserted.**
+
+###blob().put(table, sha1Hash, buffer, callback)
 ```javascript
-db.blob().put('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', buffer, function(err) {
+var buffer = new Buffer('sample')
+var hash = crypto.createHash('sha1').update(buffer).digest('hex')
+
+###blob().put('imagesTable', hash, buffer, function(err) {
     if(err) {
         //err.statusCode
     }
 })
 ```
 
-**db.blob().get(table, hash, callback)**
-* All arguments are mandatory
+###blob().get(table, sha1Hash, callback)
 ```javascript
-db.blob().get('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err, buffer) {
+db.blob().get('imagesTable', '8151325dcdbae9e0ff95f9f9658432dbedfdb209', function(err, buffer) {
     if(err) {
         //err.statusCode
     }
 })
 ```
 
-**db.blob().check(table, hash, callback)**
-* All arguments are mandatory
+###blob().check(table, sha1Hash, callback)
 ```javascript
-db.blob().check('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err) {
+db.blob().check('imagesTable', '8151325dcdbae9e0ff95f9f9658432dbedfdb209', function(err) {
+    if(err) {
+        //err.statusCode
+    }
+})
+```
+
+###blob().delete(table, sha1Hash, callback)
+```javascript
+db.blob().check('imagesTable', '8151325dcdbae9e0ff95f9f9658432dbedfdb209', function(err) {
     if(err) {
         //err.statusCode
     }
@@ -103,17 +119,9 @@ db.blob().check('imagesTable', 'e0d123e5f316bef78bfdf5a008837577', function(err)
 
 TODO
 ---------
-* Test db.blob()
 * Refactor some pieces of this code, its messy :(
-* Finish writing tests
 
 
-Authors
+Contributors
 ---------
-This was created for the Crate.io Data Storage.
 - [herenow](https://github.com/herenow)
-
-
-Thanks to
-----------
-Nobody yet :(

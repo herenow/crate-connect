@@ -5,9 +5,10 @@
  */
 function Blob() {
     return {
-        put: this._connection.blobPut,
-        get: this._connection.blobGet,
-        check: this._connection.blobCheck,
+        put: this._connection.blobPut.bind(this._connection),
+        get: this._connection.blobGet.bind(this._connection),
+        check: this._connection.blobCheck.bind(this._connection),
+        delete: this._connection.blobDelete.bind(this._connection),
     };
 }
 

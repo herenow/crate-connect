@@ -15,7 +15,8 @@
     "node": ">=0.6"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "debug": "mocha debug"
   },
   "devDependencies": {
     "mocha": "1.18.x"

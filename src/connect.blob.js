@@ -122,6 +122,37 @@ Blob.check = function Check(table, hash, callback) {
 
 
 /**
+ * Delete a blob
+ */
+Blob.delete = function Delete(table, hash, callback) {
+    var node = this.node();
+    var options = {
+        method: 'DELETE',
+        path:   '/_blobs/' + table + '/' + hash,
+        host:   node.host || 'localhost',
+        port:   node.port || 4200,
+    }
+
+    var request = Http.request(options);
+
+    request.end();
+
+    if(typeof callback === 'function') {
+        request.on('response', function(res) {
+            if(res.statusCode !== 204) {
+                callback(res.statusCode, null);
+            }
+            else {
+                callback(null, hash);
+            }
+        });
+    }
+
+    return this;
+}
+
+
+/**
  * Exports
  */
 module.exports = Blob;

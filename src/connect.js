@@ -53,6 +53,7 @@ Connect.prototype.queryPost = Query.send;
 Connect.prototype.blobPut   = Blob.put;
 Connect.prototype.blobGet   = Blob.get;
 Connect.prototype.blobCheck = Blob.check;
+Connect.prototype.blobDelete = Blob.delete;
 
 
 /**

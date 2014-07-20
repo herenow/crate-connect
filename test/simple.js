@@ -10,7 +10,7 @@ describe('Cratejs', function() {
 		    db = new Crate({
 				host: process.env.CRATE_TEST_HOST || '127.0.0.1',
 				port: process.env.CRATE_TEST_PORT || 4200,
-			});	
+			});
 		});
 	});
 
@@ -46,6 +46,50 @@ describe('Cratejs', function() {
             });
         });
 	});
+
+	describe('Blobs', function() {
+		it('Create sample blob table, this command should not fail, execute() was already tested', function(done) {
+			db.execute('CREATE BLOB TABLE blob_sample', function() {
+				done()
+			})
+		})
+		it('Should put a blob in the table', function(done) {
+			db.blob().put('blob_sample', '4f041e948dfaae599ae3f5c89f5ae698ffec4b38', new Buffer("Lorem ipsum?"), function(err) {
+				if(err && err !== 409) {
+					//Ignore error 409, because 409 is a conlifct error, blob already exists
+					return done(err);
+				}
+				done()
+			})
+		})
+		it('Should check a blob in the table', function(done) {
+			db.blob().check('blob_sample', '4f041e948dfaae599ae3f5c89f5ae698ffec4b38', function(err, buffer) {
+				if(err) {
+					return done(err);
+				}
+				done()
+			})
+		})
+		it('Should get a blob from the table', function(done) {
+			db.blob().get('blob_sample', '4f041e948dfaae599ae3f5c89f5ae698ffec4b38', function(err, buffer) {
+				if(err) {
+					return done(err);
+				}
+				if(buffer != new Buffer("Lorem ipsum?")) {
+					return done("The returned buffer was not the same as the one we sent it.")
+				}
+				done()
+			})
+		})
+		it('Should delete a blob from the table', function(done) {
+			db.blob().delete('blob_sample', '4f041e948dfaae599ae3f5c89f5ae698ffec4b38', function(err) {
+				if(err) {
+					return done(err);
+				}
+				done()
+			})
+		})
+	})
 
 
 });
