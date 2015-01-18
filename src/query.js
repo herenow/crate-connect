@@ -17,7 +17,7 @@ function Init(str) {
  */
 function Query(str, connection) {
     this._queryString = str;
-    this._connection  = connection;
+    this._connection = connection;
 
     return this;
 }
