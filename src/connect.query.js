@@ -10,51 +10,51 @@ var Query = {};
  */
 Query.send = function Send(query, statements, callback) {
     var node = this.node();
-	var options = {
-		method: 'POST',
-		path:   '/_sql',
-        host:   node.host || 'localhost',
-        port:   node.port || 4200,
-		//No need to specify Keep-Alive, node will use the default global agent
-	}
+    var options = {
+        method: 'POST',
+        path: '/_sql',
+        host: node.host || 'localhost',
+        port: node.port || 4200,
+        //No need to specify Keep-Alive, node will use the default global agent
+    };
 
-	var request = Http.request(options);
+    var request = Http.request(options);
 
-	//I really hope this query is sanatized!
-	var data = {
-		stmt: query
-	}
+    //I really hope this query is sanatized!
+    var data = {
+        stmt: query
+    };
 
-	if(statements.length > 0) {
-		data.args = statements;
-	}
+    if (statements.length > 0) {
+        data.args = statements;
+    }
 
-	request.write( JSON.stringify(data) );
-	request.end();
+    request.write(JSON.stringify(data));
+    request.end();
 
-	if(typeof callback === 'function') {
-		request.on('response', function(res) {
-			var buf = '';
+    if (typeof callback === 'function') {
+        request.on('response', function (res) {
+            var buf = '';
 
-			res.on('data', function(data) {
-				buf += data;
-			});
+            res.on('data', function (data) {
+                buf += data;
+            });
 
-			res.on('end', function() {
+            res.on('end', function () {
                 var result = JSON.parse(buf);
 
-                if(result.error) {
+                if (result.error) {
                     callback(result.error, null);
                 }
                 else {
                     callback(null, result);
                 }
-			});
-		});
-	}
+            });
+        });
+    }
 
-	return this;
-}
+    return this;
+};
 
 
 /**
