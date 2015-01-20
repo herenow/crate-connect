@@ -76,7 +76,7 @@ describe('Cratejs', function () {
         if (err) {
           return done(err);
         }
-        if (buffer !== new Buffer('Lorem ipsum?')) {
+        if (buffer.toString() !== new Buffer('Lorem ipsum?').toString()) {
           return done('The returned buffer was not the same as the one we sent it.');
         }
         done();
