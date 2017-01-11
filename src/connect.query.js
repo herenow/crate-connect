@@ -10,7 +10,12 @@ var maxRetries = 3;
  * Send a query POST
  */
 Query.send = function Send(query, statements, callback, retry, nodeThis) {
-    var node = this.node() || nodeThis;
+    var node;
+
+    if(this.node())
+        node = this.node() 
+    else
+        node = nodeThis;
 
     var options = {
         method: 'POST',
