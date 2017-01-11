@@ -12,7 +12,7 @@ var maxRetries = 3;
 Query.send = function Send(query, statements, callback, retry, nodeThis) {
     var node;
 
-    if(this.node())
+    if(typeof this.node == 'function')
         node = this.node() 
     else
         node = nodeThis;
