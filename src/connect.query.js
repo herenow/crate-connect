@@ -3,6 +3,7 @@
  */
 var Http = require('http');
 var Query = {};
+var maxRetries = 3;
 
 
 /**
