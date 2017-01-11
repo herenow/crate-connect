@@ -9,8 +9,9 @@ var maxRetries = 3;
 /**
  * Send a query POST
  */
-Query.send = function Send(query, statements, callback, retry) {
-    var node = this.node();
+Query.send = function Send(query, statements, callback, retry, nodeThis) {
+    var node = this.node() || nodeThis;
+
     var options = {
         method: 'POST',
         path:   '/_sql',
@@ -58,7 +59,7 @@ Query.send = function Send(query, statements, callback, retry) {
         request.on('error', function(e) {
             if(retry<maxRetries){
                 // Try again
-                Query.send(query,statements,callback,retry+1);
+                Query.send(query,statements,callback,retry+1,node);
             }else{
                 callback(e, null);
             }
